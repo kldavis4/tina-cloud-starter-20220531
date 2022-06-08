@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "tinacms server:start -c \"next dev\"",
+    "dev-data": "tinacms server:start --experimentalData -c \"next dev\"",
+    "dev-isomorphic": "tinacms server:start --isomorphicGitBridge --experimentalData -c \"next dev\"",
     "build": "tinacms server:start -c \"next build\"",
     "start": "tinacms server:start -c \"next start\"",
     "export": "npm run build && next export",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "devDependencies": {
-    "@tinacms/cli": "^0.60.18",
+    "@tinacms/cli": "0.0.0-2022581158",
     "@types/js-cookie": "^3.0.0",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
