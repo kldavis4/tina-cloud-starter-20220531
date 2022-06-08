@@ -1990,10 +1990,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.2.tgz#d44998aac125a68d96d097e49ff84d1c1ff7a7c2"
   integrity sha512-5oBWtkXG8vu/W9txQrcIb7r2GC6XlgpPsO2EKdjGF4gTWZVlwah73OHqL/QogZWIbZ/4znPL1QkZVwGZuYURiw==
 
-"@tinacms/cli@0.0.0-202258142358":
-  version "0.0.0-202258142358"
-  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.0.0-202258142358.tgz#9fd8580ce5664d1abde27e926b87ad23161263fe"
-  integrity sha512-k5suXNBKFsJtiHXaVRCCd0+18D1kWXBl8tH8PPmXdqYJ8dN6rvhBO/Zd4c3i/I8c/c/DxJ+mEPiskuiiMa9j1w==
+"@tinacms/cli@0.0.0-202258144831":
+  version "0.0.0-202258144831"
+  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.0.0-202258144831.tgz#e389f9d7c1fda0e53ee50ee08e371cbb0a8b8a0e"
+  integrity sha512-UiBO9fH1lUCNqWe8nQNKoHDYQ9WMFPDrzbhTzPQBUGxv5Gn2hfXrImhrnFbdCUtkDT4Q2ZSJHzPccH2CthibSA==
   dependencies:
     "@graphql-codegen/core" "^2.1.0"
     "@graphql-codegen/plugin-helpers" latest
@@ -2003,8 +2003,8 @@
     "@graphql-codegen/visitor-plugin-common" "^2.4.0"
     "@graphql-tools/graphql-file-loader" "^7.2.0"
     "@graphql-tools/load" "^7.3.2"
-    "@tinacms/datalayer" "0.0.0-202258142358"
-    "@tinacms/graphql" "0.0.0-202258142358"
+    "@tinacms/datalayer" "0.0.0-202258144831"
+    "@tinacms/graphql" "0.0.0-202258144831"
     "@tinacms/metrics" "0.0.3"
     "@tinacms/schema-tools" "0.0.4"
     "@yarnpkg/esbuild-plugin-pnp" "^2.0.1-rc.3"
@@ -2037,10 +2037,10 @@
     yarn "^1.22.17"
     yup "^0.32.9"
 
-"@tinacms/datalayer@0.0.0-202258142358":
-  version "0.0.0-202258142358"
-  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-0.0.0-202258142358.tgz#ab685d68cfae95eb5039917dd268119f20fc6ea2"
-  integrity sha512-DV93pG/IJVeCTaWIAxql/8tp+MiGRfPX7fliYfk07jqmVAFFmb30hQ0U+awq818W481UZvXblpGC2euLUP30gw==
+"@tinacms/datalayer@0.0.0-202258144831":
+  version "0.0.0-202258144831"
+  resolved "https://registry.yarnpkg.com/@tinacms/datalayer/-/datalayer-0.0.0-202258144831.tgz#21fa56b78cf7760d91b5309d9bb7c96ea593d052"
+  integrity sha512-0+hHoXUoIhK/3Eo4zzQQ32nPBjmBT8IMI0j2MxMm/REpiwTwzhDwErBqrhw03ArvM6IEv46x6h2tGhkz5X19Bw==
   dependencies:
     "@octokit/auth-app" "^2.6.0"
     "@octokit/graphql" "^4.5.6"
@@ -2063,13 +2063,13 @@
     prettier "^2.2.1"
     yup "^0.32.9"
 
-"@tinacms/graphql@0.0.0-202258142358":
-  version "0.0.0-202258142358"
-  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.0.0-202258142358.tgz#e69c0b4bab0b8ae7f79173262ca82ce1fd7490d9"
-  integrity sha512-ZTJa8ROT/zPiWxN+sxc/PG3PE4PsoCOdfAy4owt/M2LPpsAqE6S4ZSz8NJ7rqNIjbjRQF/X3gfeEHpwBPrpdgg==
+"@tinacms/graphql@0.0.0-202258144831":
+  version "0.0.0-202258144831"
+  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.0.0-202258144831.tgz#f91d58a41db5414bacfe8bf963facfb18d483b04"
+  integrity sha512-w1L3w/foXHMD7EwXarz94u9+oVTZAm5NpfKr/XdW4PHG/lx6HzrVzLU6M7ELyi+4wmdk+1GmfvlfRIkzw2+KRQ==
   dependencies:
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
-    "@tinacms/datalayer" "0.0.0-202258142358"
+    "@tinacms/datalayer" "0.0.0-202258144831"
     body-parser "^1.19.0"
     cors "^2.8.5"
     dataloader "^2.0.0"
