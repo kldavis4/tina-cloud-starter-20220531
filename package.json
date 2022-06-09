@@ -12,7 +12,7 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "devDependencies": {
-    "@tinacms/cli": "0.0.0-202258161356",
+    "@tinacms/cli": "0.0.0-20225817435",
     "@types/js-cookie": "^3.0.0",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
