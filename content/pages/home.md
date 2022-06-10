@@ -9,7 +9,7 @@ blocks:
       .tina/schema.ts.
 
 
-      AB
+      ABC
 
 
       Check out this sweet update.
