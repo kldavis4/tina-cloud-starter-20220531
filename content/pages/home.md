@@ -10,9 +10,6 @@ blocks:
 
 
       ABCD
-
-
-      Check out this sweet update.
     actions:
       - label: Get Started
         type: button
