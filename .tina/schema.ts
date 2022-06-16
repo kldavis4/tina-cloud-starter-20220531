@@ -6,6 +6,14 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
 
 const schema = defineSchema({
+  config: {
+    media: {
+      tina: {
+        publicFolder: 'public',
+        syncFolder: 'uploads'
+      }
+    }
+  },
   collections: [
     {
       label: "Blog Posts",
@@ -358,12 +366,15 @@ const apiURL =
     : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`;
 
 export const tinaConfig = defineConfig({
-  apiURL,
-  schema,
-  mediaStore: async () => {
-    const pack = await import("next-tinacms-cloudinary");
-    return pack.TinaCloudCloudinaryMediaStore;
+  branch: 'main',
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  isLocalClient: Boolean(Number(process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT)),
+  tinaioConfig: {
+    frontendUrlOverride: process.env.NEXT_PUBLIC_TINA_URL,
+    contentApiUrlOverride: process.env.NEXT_PUBLIC_TINA_CONTENT_URL,
+    identityApiUrlOverride: process.env.NEXT_PUBLIC_TINA_IDENTITY_URL
   },
+  schema,
   cmsCallback: (cms) => {
     /**
      * Enables experimental branch switcher
