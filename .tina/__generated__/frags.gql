@@ -11,7 +11,6 @@ fragment PostParts on Post {
   _body
 }
 
-
 fragment GlobalParts on Global {
   header {
     __typename
