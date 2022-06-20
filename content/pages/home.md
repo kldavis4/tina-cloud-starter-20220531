@@ -9,7 +9,7 @@ blocks:
       .tina/schema.ts.
 
 
-      ABCD
+      ABCDE
     actions:
       - label: Get Started
         type: button
@@ -21,7 +21,7 @@ blocks:
         link: /posts
     image:
       src: >-
-        https://res.cloudinary.com/forestry-demo/image/upload/v1628102029/tina-cloud-starter/tina-illustration.WebP
+        /uploadshttps://res.cloudinary.com/forestry-demo/image/upload/v1628102029/tina-cloud-starter/tina-illustration.WebP
       alt: Tina
     color: default
     _template: hero
