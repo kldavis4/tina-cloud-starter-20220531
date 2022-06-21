@@ -116,6 +116,7 @@ export type QueryPostConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PostFilter>;
 };
 
 
@@ -130,6 +131,7 @@ export type QueryGlobalConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<GlobalFilter>;
 };
 
 
@@ -144,6 +146,7 @@ export type QueryAuthorConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<AuthorFilter>;
 };
 
 
@@ -158,6 +161,14 @@ export type QueryPageConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PageFilter>;
+};
+
+export type DocumentFilter = {
+  post?: InputMaybe<PostFilter>;
+  global?: InputMaybe<GlobalFilter>;
+  author?: InputMaybe<AuthorFilter>;
+  page?: InputMaybe<PageFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -193,6 +204,7 @@ export type CollectionDocumentsArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<DocumentFilter>;
 };
 
 export type DocumentNode = Post | Global | Author | Page;
@@ -210,6 +222,69 @@ export type Post = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type PostAuthorFilter = {
+  author?: InputMaybe<AuthorFilter>;
+};
+
+export type DatetimeFilter = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type Post_BodyDateTimeFilter = {
+  format?: InputMaybe<StringFilter>;
+};
+
+export type Post_BodyBlockQuoteFilter = {
+  children?: InputMaybe<RichTextFilter>;
+  authorName?: InputMaybe<StringFilter>;
+};
+
+export type Post_BodyNewsletterSignupFilter = {
+  children?: InputMaybe<RichTextFilter>;
+  placeholder?: InputMaybe<StringFilter>;
+  buttonText?: InputMaybe<StringFilter>;
+  disclaimer?: InputMaybe<RichTextFilter>;
+};
+
+export type Post_BodyFilter = {
+  DateTime?: InputMaybe<Post_BodyDateTimeFilter>;
+  BlockQuote?: InputMaybe<Post_BodyBlockQuoteFilter>;
+  NewsletterSignup?: InputMaybe<Post_BodyNewsletterSignupFilter>;
+};
+
+export type PostFilter = {
+  title?: InputMaybe<StringFilter>;
+  heroImg?: InputMaybe<ImageFilter>;
+  excerpt?: InputMaybe<RichTextFilter>;
+  author?: InputMaybe<PostAuthorFilter>;
+  date?: InputMaybe<DatetimeFilter>;
+  _body?: InputMaybe<Post_BodyFilter>;
 };
 
 export type PostConnectionEdges = {
@@ -277,6 +352,48 @@ export type Global = Node & Document & {
   _values: Scalars['JSON'];
 };
 
+export type GlobalHeaderIconFilter = {
+  color?: InputMaybe<StringFilter>;
+  style?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+};
+
+export type GlobalHeaderNavFilter = {
+  href?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type GlobalHeaderFilter = {
+  icon?: InputMaybe<GlobalHeaderIconFilter>;
+  color?: InputMaybe<StringFilter>;
+  nav?: InputMaybe<GlobalHeaderNavFilter>;
+};
+
+export type GlobalFooterSocialFilter = {
+  facebook?: InputMaybe<StringFilter>;
+  twitter?: InputMaybe<StringFilter>;
+  instagram?: InputMaybe<StringFilter>;
+  github?: InputMaybe<StringFilter>;
+};
+
+export type GlobalFooterFilter = {
+  color?: InputMaybe<StringFilter>;
+  social?: InputMaybe<GlobalFooterSocialFilter>;
+};
+
+export type GlobalThemeFilter = {
+  color?: InputMaybe<StringFilter>;
+  font?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+  darkMode?: InputMaybe<StringFilter>;
+};
+
+export type GlobalFilter = {
+  header?: InputMaybe<GlobalHeaderFilter>;
+  footer?: InputMaybe<GlobalFooterFilter>;
+  theme?: InputMaybe<GlobalThemeFilter>;
+};
+
 export type GlobalConnectionEdges = {
   __typename?: 'GlobalConnectionEdges';
   cursor: Scalars['String'];
@@ -297,6 +414,11 @@ export type Author = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
+};
+
+export type AuthorFilter = {
+  name?: InputMaybe<StringFilter>;
+  avatar?: InputMaybe<StringFilter>;
 };
 
 export type AuthorConnectionEdges = {
@@ -377,6 +499,71 @@ export type Page = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
+};
+
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type PageBlocksHeroActionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<BooleanFilter>;
+  link?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksHeroImageFilter = {
+  src?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksHeroFilter = {
+  tagline?: InputMaybe<StringFilter>;
+  headline?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
+  actions?: InputMaybe<PageBlocksHeroActionsFilter>;
+  image?: InputMaybe<PageBlocksHeroImageFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksFeaturesItemsIconFilter = {
+  color?: InputMaybe<StringFilter>;
+  style?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksFeaturesItemsFilter = {
+  icon?: InputMaybe<PageBlocksFeaturesItemsIconFilter>;
+  title?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksFeaturesFilter = {
+  items?: InputMaybe<PageBlocksFeaturesItemsFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksContentFilter = {
+  body?: InputMaybe<RichTextFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksTestimonialFilter = {
+  quote?: InputMaybe<StringFilter>;
+  author?: InputMaybe<StringFilter>;
+  color?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksFilter = {
+  hero?: InputMaybe<PageBlocksHeroFilter>;
+  features?: InputMaybe<PageBlocksFeaturesFilter>;
+  content?: InputMaybe<PageBlocksContentFilter>;
+  testimonial?: InputMaybe<PageBlocksTestimonialFilter>;
+};
+
+export type PageFilter = {
+  blocks?: InputMaybe<PageBlocksFilter>;
 };
 
 export type PageConnectionEdges = {
@@ -642,7 +829,14 @@ export type PostQueryVariables = Exact<{
 
 export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, title?: string | null, heroImg?: string | null, excerpt?: any | null, date?: string | null, _body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', id: string } | null } };
 
-export type PostConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type PostConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PostFilter>;
+}>;
 
 
 export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'Post', id: string, title?: string | null, heroImg?: string | null, excerpt?: any | null, date?: string | null, _body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', id: string } | null } | null } | null> | null } };
@@ -654,7 +848,14 @@ export type GlobalQueryVariables = Exact<{
 
 export type GlobalQuery = { __typename?: 'Query', global: { __typename?: 'Global', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, header?: { __typename: 'GlobalHeader', color?: string | null, icon?: { __typename: 'GlobalHeaderIcon', color?: string | null, style?: string | null, name?: string | null } | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null } };
 
-export type GlobalConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type GlobalConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<GlobalFilter>;
+}>;
 
 
 export type GlobalConnectionQuery = { __typename?: 'Query', globalConnection: { __typename?: 'GlobalConnection', totalCount: number, edges?: Array<{ __typename?: 'GlobalConnectionEdges', node?: { __typename?: 'Global', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, header?: { __typename: 'GlobalHeader', color?: string | null, icon?: { __typename: 'GlobalHeaderIcon', color?: string | null, style?: string | null, name?: string | null } | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null } | null } | null> | null } };
@@ -666,7 +867,14 @@ export type AuthorQueryVariables = Exact<{
 
 export type AuthorQuery = { __typename?: 'Query', author: { __typename?: 'Author', id: string, name?: string | null, avatar?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type AuthorConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type AuthorConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<AuthorFilter>;
+}>;
 
 
 export type AuthorConnectionQuery = { __typename?: 'Query', authorConnection: { __typename?: 'AuthorConnection', totalCount: number, edges?: Array<{ __typename?: 'AuthorConnectionEdges', node?: { __typename?: 'Author', id: string, name?: string | null, avatar?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
@@ -678,7 +886,14 @@ export type PageQueryVariables = Exact<{
 
 export type PageQuery = { __typename?: 'Query', page: { __typename?: 'Page', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', tagline?: string | null, headline?: string | null, text?: any | null, color?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, type?: string | null, icon?: boolean | null, link?: string | null } | null> | null, image?: { __typename: 'PageBlocksHeroImage', src?: string | null, alt?: string | null } | null } | { __typename: 'PageBlocksFeatures', color?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItems', title?: string | null, text?: string | null, icon?: { __typename: 'PageBlocksFeaturesItemsIcon', color?: string | null, style?: string | null, name?: string | null } | null } | null> | null } | { __typename: 'PageBlocksContent', body?: any | null, color?: string | null } | { __typename: 'PageBlocksTestimonial', quote?: string | null, author?: string | null, color?: string | null } | null> | null } };
 
-export type PageConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type PageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PageFilter>;
+}>;
 
 
 export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, edges?: Array<{ __typename?: 'PageConnectionEdges', node?: { __typename?: 'Page', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', tagline?: string | null, headline?: string | null, text?: any | null, color?: string | null, actions?: Array<{ __typename: 'PageBlocksHeroActions', label?: string | null, type?: string | null, icon?: boolean | null, link?: string | null } | null> | null, image?: { __typename: 'PageBlocksHeroImage', src?: string | null, alt?: string | null } | null } | { __typename: 'PageBlocksFeatures', color?: string | null, items?: Array<{ __typename: 'PageBlocksFeaturesItems', title?: string | null, text?: string | null, icon?: { __typename: 'PageBlocksFeaturesItemsIcon', color?: string | null, style?: string | null, name?: string | null } | null } | null> | null } | { __typename: 'PageBlocksContent', body?: any | null, color?: string | null } | { __typename: 'PageBlocksTestimonial', quote?: string | null, author?: string | null, color?: string | null } | null> | null } | null } | null> | null } };
@@ -860,8 +1075,15 @@ export const PostDocument = gql`
 }
     ${PostPartsFragmentDoc}`;
 export const PostConnectionDocument = gql`
-    query postConnection {
-  postConnection {
+    query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PostFilter) {
+  postConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
     totalCount
     edges {
       node {
@@ -901,8 +1123,15 @@ export const GlobalDocument = gql`
 }
     ${GlobalPartsFragmentDoc}`;
 export const GlobalConnectionDocument = gql`
-    query globalConnection {
-  globalConnection {
+    query globalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: GlobalFilter) {
+  globalConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
     totalCount
     edges {
       node {
@@ -942,8 +1171,15 @@ export const AuthorDocument = gql`
 }
     ${AuthorPartsFragmentDoc}`;
 export const AuthorConnectionDocument = gql`
-    query authorConnection {
-  authorConnection {
+    query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AuthorFilter) {
+  authorConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
     totalCount
     edges {
       node {
@@ -983,8 +1219,15 @@ export const PageDocument = gql`
 }
     ${PagePartsFragmentDoc}`;
 export const PageConnectionDocument = gql`
-    query pageConnection {
-  pageConnection {
+    query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PageFilter) {
+  pageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
     totalCount
     edges {
       node {
