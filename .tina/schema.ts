@@ -6,14 +6,6 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
 
 const schema = defineSchema({
-  config: {
-    media: {
-      tina: {
-        publicFolder: 'public',
-        syncFolder: 'uploads'
-      }
-    }
-  },
   collections: [
     {
       label: "Blog Posts",
