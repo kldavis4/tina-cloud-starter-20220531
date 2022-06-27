@@ -9,7 +9,7 @@ blocks:
       .tina/schema.ts.
 
 
-      ABCDEF
+      ABCDEFG
     actions:
       - label: Get Started
         type: button
