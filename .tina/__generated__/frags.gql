@@ -11,6 +11,18 @@ fragment PostParts on Post {
   _body
 }
 
+fragment Post2Parts on Post2 {
+  title
+  date
+  summary
+  description
+  featured
+  disable_ads
+  disable_panels
+  disable_newsletterbox
+  body
+}
+
 fragment GlobalParts on Global {
   header {
     __typename

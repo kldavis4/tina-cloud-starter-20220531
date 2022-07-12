@@ -49,20 +49,15 @@ type Query {
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
   post(relativePath: String): Post!
-  postConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PostFilter): PostConnection!
+  postConnection(before: String, after: String, first: Float, last: Float, sort: String): PostConnection!
+  post2(relativePath: String): Post2!
+  post2Connection(before: String, after: String, first: Float, last: Float, sort: String): Post2Connection!
   global(relativePath: String): Global!
-  globalConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: GlobalFilter): GlobalConnection!
+  globalConnection(before: String, after: String, first: Float, last: Float, sort: String): GlobalConnection!
   author(relativePath: String): Author!
-  authorConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AuthorFilter): AuthorConnection!
+  authorConnection(before: String, after: String, first: Float, last: Float, sort: String): AuthorConnection!
   page(relativePath: String): Page!
-  pageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PageFilter): PageConnection!
-}
-
-input DocumentFilter {
-  post: PostFilter
-  global: GlobalFilter
-  author: AuthorFilter
-  page: PageFilter
+  pageConnection(before: String, after: String, first: Float, last: Float, sort: String): PageConnection!
 }
 
 type DocumentConnectionEdges {
@@ -85,10 +80,10 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
 }
 
-union DocumentNode = Post | Global | Author | Page
+union DocumentNode = Post | Post2 | Global | Author | Page
 
 union PostAuthor = Author
 
@@ -104,69 +99,6 @@ type Post implements Node & Document {
   _values: JSON!
 }
 
-input StringFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input ImageFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input RichTextFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-}
-
-input PostAuthorFilter {
-  author: AuthorFilter
-}
-
-input DatetimeFilter {
-  after: String
-  before: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input Post_bodyDateTimeFilter {
-  format: StringFilter
-}
-
-input Post_bodyBlockQuoteFilter {
-  children: RichTextFilter
-  authorName: StringFilter
-}
-
-input Post_bodyNewsletterSignupFilter {
-  children: RichTextFilter
-  placeholder: StringFilter
-  buttonText: StringFilter
-  disclaimer: RichTextFilter
-}
-
-input Post_bodyFilter {
-  DateTime: Post_bodyDateTimeFilter
-  BlockQuote: Post_bodyBlockQuoteFilter
-  NewsletterSignup: Post_bodyNewsletterSignupFilter
-}
-
-input PostFilter {
-  title: StringFilter
-  heroImg: ImageFilter
-  excerpt: RichTextFilter
-  author: PostAuthorFilter
-  date: DatetimeFilter
-  _body: Post_bodyFilter
-}
-
 type PostConnectionEdges {
   cursor: String!
   node: Post
@@ -176,6 +108,32 @@ type PostConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
   edges: [PostConnectionEdges]
+}
+
+type Post2 implements Node & Document {
+  title: String!
+  date: String
+  summary: String
+  description: String
+  featured: Boolean
+  disable_ads: Boolean
+  disable_panels: Boolean
+  disable_newsletterbox: Boolean
+  body: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+type Post2ConnectionEdges {
+  cursor: String!
+  node: Post2
+}
+
+type Post2Connection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Post2ConnectionEdges]
 }
 
 type GlobalHeaderIcon {
@@ -223,48 +181,6 @@ type Global implements Node & Document {
   _values: JSON!
 }
 
-input GlobalHeaderIconFilter {
-  color: StringFilter
-  style: StringFilter
-  name: StringFilter
-}
-
-input GlobalHeaderNavFilter {
-  href: StringFilter
-  label: StringFilter
-}
-
-input GlobalHeaderFilter {
-  icon: GlobalHeaderIconFilter
-  color: StringFilter
-  nav: GlobalHeaderNavFilter
-}
-
-input GlobalFooterSocialFilter {
-  facebook: StringFilter
-  twitter: StringFilter
-  instagram: StringFilter
-  github: StringFilter
-}
-
-input GlobalFooterFilter {
-  color: StringFilter
-  social: GlobalFooterSocialFilter
-}
-
-input GlobalThemeFilter {
-  color: StringFilter
-  font: StringFilter
-  icon: StringFilter
-  darkMode: StringFilter
-}
-
-input GlobalFilter {
-  header: GlobalHeaderFilter
-  footer: GlobalFooterFilter
-  theme: GlobalThemeFilter
-}
-
 type GlobalConnectionEdges {
   cursor: String!
   node: Global
@@ -282,11 +198,6 @@ type Author implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
-}
-
-input AuthorFilter {
-  name: StringFilter
-  avatar: StringFilter
 }
 
 type AuthorConnectionEdges {
@@ -358,71 +269,6 @@ type Page implements Node & Document {
   _values: JSON!
 }
 
-input BooleanFilter {
-  eq: Boolean
-  exists: Boolean
-}
-
-input PageBlocksHeroActionsFilter {
-  label: StringFilter
-  type: StringFilter
-  icon: BooleanFilter
-  link: StringFilter
-}
-
-input PageBlocksHeroImageFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input PageBlocksHeroFilter {
-  tagline: StringFilter
-  headline: StringFilter
-  text: RichTextFilter
-  actions: PageBlocksHeroActionsFilter
-  image: PageBlocksHeroImageFilter
-  color: StringFilter
-}
-
-input PageBlocksFeaturesItemsIconFilter {
-  color: StringFilter
-  style: StringFilter
-  name: StringFilter
-}
-
-input PageBlocksFeaturesItemsFilter {
-  icon: PageBlocksFeaturesItemsIconFilter
-  title: StringFilter
-  text: StringFilter
-}
-
-input PageBlocksFeaturesFilter {
-  items: PageBlocksFeaturesItemsFilter
-  color: StringFilter
-}
-
-input PageBlocksContentFilter {
-  body: RichTextFilter
-  color: StringFilter
-}
-
-input PageBlocksTestimonialFilter {
-  quote: StringFilter
-  author: StringFilter
-  color: StringFilter
-}
-
-input PageBlocksFilter {
-  hero: PageBlocksHeroFilter
-  features: PageBlocksFeaturesFilter
-  content: PageBlocksContentFilter
-  testimonial: PageBlocksTestimonialFilter
-}
-
-input PageFilter {
-  blocks: PageBlocksFilter
-}
-
 type PageConnectionEdges {
   cursor: String!
   node: Page
@@ -441,6 +287,8 @@ type Mutation {
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updatePost(relativePath: String!, params: PostMutation!): Post!
   createPost(relativePath: String!, params: PostMutation!): Post!
+  updatePost2(relativePath: String!, params: Post2Mutation!): Post2!
+  createPost2(relativePath: String!, params: Post2Mutation!): Post2!
   updateGlobal(relativePath: String!, params: GlobalMutation!): Global!
   createGlobal(relativePath: String!, params: GlobalMutation!): Global!
   updateAuthor(relativePath: String!, params: AuthorMutation!): Author!
@@ -451,6 +299,7 @@ type Mutation {
 
 input DocumentMutation {
   post: PostMutation
+  post2: Post2Mutation
   global: GlobalMutation
   author: AuthorMutation
   page: PageMutation
@@ -463,6 +312,18 @@ input PostMutation {
   author: String
   date: String
   _body: JSON
+}
+
+input Post2Mutation {
+  title: String
+  date: String
+  summary: String
+  description: String
+  featured: Boolean
+  disable_ads: Boolean
+  disable_panels: Boolean
+  disable_newsletterbox: Boolean
+  body: String
 }
 
 input GlobalHeaderIconMutation {

@@ -115,6 +115,78 @@ const schema = defineSchema({
       ],
     },
     {
+      label: "Blog Posts",
+      name: "post2",
+      path: "content/posts2",
+      format: "md",
+      fields: [
+       {
+          type: "string",
+          label: "Title",
+          name: "title",
+          isTitle: true, // this field will be used instead of the filename when listing the pages in the CMS
+          required: true,
+        },
+        //authorReferenceField,
+        // {
+        //   type: "string",
+        //   label: "Image",
+        //   name: "image",
+        // },
+        {
+          type: "datetime",
+          label: "Date",
+          name: "date",
+        },
+        {
+          type: "string",
+          label: "Summary",
+          name: "summary",
+          ui: {
+            component: "textarea",
+          },
+        },
+        {
+          type: "string",
+          label: "Description",
+          name: "description",
+          ui: {
+            component: "textarea",
+          },
+        },
+        // categoriesReferenceField,
+        {
+          type: "boolean",
+          label: "Featured",
+          name: "featured",
+        },
+        {
+          type: "boolean",
+          label: "Disable Advertising",
+          name: "disable_ads",
+        },
+        {
+          type: "boolean",
+          label: "Disable panels",
+          name: "disable_panels",
+        },
+        {
+          type: "boolean",
+          label: "Disable newsletter box",
+          name: "disable_newsletterbox",
+        },
+        {
+          name: "body",
+          label: "Body",
+          type: "string",
+          isBody: true,
+          ui: {
+            component: "textarea",
+          },
+        },
+      ],
+    },
+    {
       label: "Global",
       name: "global",
       path: "content/global",

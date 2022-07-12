@@ -15,14 +15,13 @@ query post($relativePath: String!) {
   }
 }
 
-query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PostFilter) {
+query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   postConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -39,6 +38,51 @@ query postConnection($before: String, $after: String, $first: Float, $last: Floa
           id
         }
         ...PostParts
+      }
+    }
+  }
+}
+
+query post2($relativePath: String!) {
+  post2(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Post2Parts
+  }
+}
+
+query post2Connection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  post2Connection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
+    totalCount
+    edges {
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Post2Parts
       }
     }
   }
@@ -61,14 +105,13 @@ query global($relativePath: String!) {
   }
 }
 
-query globalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: GlobalFilter) {
+query globalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   globalConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -107,14 +150,13 @@ query author($relativePath: String!) {
   }
 }
 
-query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AuthorFilter) {
+query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   authorConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -153,14 +195,13 @@ query page($relativePath: String!) {
   }
 }
 
-query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PageFilter) {
+query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   pageConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
