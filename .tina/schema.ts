@@ -116,8 +116,8 @@ const schema = defineSchema({
     },
     {
       label: "Blog Posts",
-      name: "post2",
-      path: "content/posts2",
+      name: "foobar",
+      path: "content/foobar",
       format: "md",
       fields: [
        {

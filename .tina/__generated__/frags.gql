@@ -11,7 +11,7 @@ fragment PostParts on Post {
   _body
 }
 
-fragment Post2Parts on Post2 {
+fragment FoobarParts on Foobar {
   title
   date
   summary

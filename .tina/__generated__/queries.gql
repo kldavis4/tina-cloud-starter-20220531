@@ -15,14 +15,13 @@ query post($relativePath: String!) {
   }
 }
 
-query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PostFilter) {
+query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   postConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -44,8 +43,8 @@ query postConnection($before: String, $after: String, $first: Float, $last: Floa
   }
 }
 
-query post2($relativePath: String!) {
-  post2(relativePath: $relativePath) {
+query foobar($relativePath: String!) {
+  foobar(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -57,18 +56,17 @@ query post2($relativePath: String!) {
       }
       id
     }
-    ...Post2Parts
+    ...FoobarParts
   }
 }
 
-query post2Connection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Post2Filter) {
-  post2Connection(
+query foobarConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  foobarConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -84,7 +82,7 @@ query post2Connection($before: String, $after: String, $first: Float, $last: Flo
           }
           id
         }
-        ...Post2Parts
+        ...FoobarParts
       }
     }
   }
@@ -107,14 +105,13 @@ query global($relativePath: String!) {
   }
 }
 
-query globalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: GlobalFilter) {
+query globalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   globalConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -153,14 +150,13 @@ query author($relativePath: String!) {
   }
 }
 
-query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AuthorFilter) {
+query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   authorConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -199,14 +195,13 @@ query page($relativePath: String!) {
   }
 }
 
-query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PageFilter) {
+query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   pageConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {

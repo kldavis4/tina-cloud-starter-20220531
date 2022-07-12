@@ -75,8 +75,8 @@ export type Query = {
   document: DocumentNode;
   post: Post;
   postConnection: PostConnection;
-  post2: Post2;
-  post2Connection: Post2Connection;
+  foobar: Foobar;
+  foobarConnection: FoobarConnection;
   global: Global;
   globalConnection: GlobalConnection;
   author: Author;
@@ -118,22 +118,20 @@ export type QueryPostConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<PostFilter>;
 };
 
 
-export type QueryPost2Args = {
+export type QueryFoobarArgs = {
   relativePath?: InputMaybe<Scalars['String']>;
 };
 
 
-export type QueryPost2ConnectionArgs = {
+export type QueryFoobarConnectionArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<Post2Filter>;
 };
 
 
@@ -148,7 +146,6 @@ export type QueryGlobalConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<GlobalFilter>;
 };
 
 
@@ -163,7 +160,6 @@ export type QueryAuthorConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<AuthorFilter>;
 };
 
 
@@ -178,15 +174,6 @@ export type QueryPageConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<PageFilter>;
-};
-
-export type DocumentFilter = {
-  post?: InputMaybe<PostFilter>;
-  post2?: InputMaybe<Post2Filter>;
-  global?: InputMaybe<GlobalFilter>;
-  author?: InputMaybe<AuthorFilter>;
-  page?: InputMaybe<PageFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -222,10 +209,9 @@ export type CollectionDocumentsArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<DocumentFilter>;
 };
 
-export type DocumentNode = Post | Post2 | Global | Author | Page;
+export type DocumentNode = Post | Foobar | Global | Author | Page;
 
 export type PostAuthor = Author;
 
@@ -242,69 +228,6 @@ export type Post = Node & Document & {
   _values: Scalars['JSON'];
 };
 
-export type StringFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type RichTextFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type PostAuthorFilter = {
-  author?: InputMaybe<AuthorFilter>;
-};
-
-export type DatetimeFilter = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type Post_BodyDateTimeFilter = {
-  format?: InputMaybe<StringFilter>;
-};
-
-export type Post_BodyBlockQuoteFilter = {
-  children?: InputMaybe<RichTextFilter>;
-  authorName?: InputMaybe<StringFilter>;
-};
-
-export type Post_BodyNewsletterSignupFilter = {
-  children?: InputMaybe<RichTextFilter>;
-  placeholder?: InputMaybe<StringFilter>;
-  buttonText?: InputMaybe<StringFilter>;
-  disclaimer?: InputMaybe<RichTextFilter>;
-};
-
-export type Post_BodyFilter = {
-  DateTime?: InputMaybe<Post_BodyDateTimeFilter>;
-  BlockQuote?: InputMaybe<Post_BodyBlockQuoteFilter>;
-  NewsletterSignup?: InputMaybe<Post_BodyNewsletterSignupFilter>;
-};
-
-export type PostFilter = {
-  title?: InputMaybe<StringFilter>;
-  heroImg?: InputMaybe<ImageFilter>;
-  excerpt?: InputMaybe<RichTextFilter>;
-  author?: InputMaybe<PostAuthorFilter>;
-  date?: InputMaybe<DatetimeFilter>;
-  _body?: InputMaybe<Post_BodyFilter>;
-};
-
 export type PostConnectionEdges = {
   __typename?: 'PostConnectionEdges';
   cursor: Scalars['String'];
@@ -318,8 +241,8 @@ export type PostConnection = Connection & {
   edges?: Maybe<Array<Maybe<PostConnectionEdges>>>;
 };
 
-export type Post2 = Node & Document & {
-  __typename?: 'Post2';
+export type Foobar = Node & Document & {
+  __typename?: 'Foobar';
   title: Scalars['String'];
   date?: Maybe<Scalars['String']>;
   summary?: Maybe<Scalars['String']>;
@@ -334,34 +257,17 @@ export type Post2 = Node & Document & {
   _values: Scalars['JSON'];
 };
 
-export type BooleanFilter = {
-  eq?: InputMaybe<Scalars['Boolean']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type Post2Filter = {
-  title?: InputMaybe<StringFilter>;
-  date?: InputMaybe<DatetimeFilter>;
-  summary?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  featured?: InputMaybe<BooleanFilter>;
-  disable_ads?: InputMaybe<BooleanFilter>;
-  disable_panels?: InputMaybe<BooleanFilter>;
-  disable_newsletterbox?: InputMaybe<BooleanFilter>;
-  body?: InputMaybe<StringFilter>;
-};
-
-export type Post2ConnectionEdges = {
-  __typename?: 'Post2ConnectionEdges';
+export type FoobarConnectionEdges = {
+  __typename?: 'FoobarConnectionEdges';
   cursor: Scalars['String'];
-  node?: Maybe<Post2>;
+  node?: Maybe<Foobar>;
 };
 
-export type Post2Connection = Connection & {
-  __typename?: 'Post2Connection';
+export type FoobarConnection = Connection & {
+  __typename?: 'FoobarConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float'];
-  edges?: Maybe<Array<Maybe<Post2ConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<FoobarConnectionEdges>>>;
 };
 
 export type GlobalHeaderIcon = {
@@ -416,48 +322,6 @@ export type Global = Node & Document & {
   _values: Scalars['JSON'];
 };
 
-export type GlobalHeaderIconFilter = {
-  color?: InputMaybe<StringFilter>;
-  style?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
-};
-
-export type GlobalHeaderNavFilter = {
-  href?: InputMaybe<StringFilter>;
-  label?: InputMaybe<StringFilter>;
-};
-
-export type GlobalHeaderFilter = {
-  icon?: InputMaybe<GlobalHeaderIconFilter>;
-  color?: InputMaybe<StringFilter>;
-  nav?: InputMaybe<GlobalHeaderNavFilter>;
-};
-
-export type GlobalFooterSocialFilter = {
-  facebook?: InputMaybe<StringFilter>;
-  twitter?: InputMaybe<StringFilter>;
-  instagram?: InputMaybe<StringFilter>;
-  github?: InputMaybe<StringFilter>;
-};
-
-export type GlobalFooterFilter = {
-  color?: InputMaybe<StringFilter>;
-  social?: InputMaybe<GlobalFooterSocialFilter>;
-};
-
-export type GlobalThemeFilter = {
-  color?: InputMaybe<StringFilter>;
-  font?: InputMaybe<StringFilter>;
-  icon?: InputMaybe<StringFilter>;
-  darkMode?: InputMaybe<StringFilter>;
-};
-
-export type GlobalFilter = {
-  header?: InputMaybe<GlobalHeaderFilter>;
-  footer?: InputMaybe<GlobalFooterFilter>;
-  theme?: InputMaybe<GlobalThemeFilter>;
-};
-
 export type GlobalConnectionEdges = {
   __typename?: 'GlobalConnectionEdges';
   cursor: Scalars['String'];
@@ -478,11 +342,6 @@ export type Author = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
-};
-
-export type AuthorFilter = {
-  name?: InputMaybe<StringFilter>;
-  avatar?: InputMaybe<StringFilter>;
 };
 
 export type AuthorConnectionEdges = {
@@ -565,66 +424,6 @@ export type Page = Node & Document & {
   _values: Scalars['JSON'];
 };
 
-export type PageBlocksHeroActionsFilter = {
-  label?: InputMaybe<StringFilter>;
-  type?: InputMaybe<StringFilter>;
-  icon?: InputMaybe<BooleanFilter>;
-  link?: InputMaybe<StringFilter>;
-};
-
-export type PageBlocksHeroImageFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type PageBlocksHeroFilter = {
-  tagline?: InputMaybe<StringFilter>;
-  headline?: InputMaybe<StringFilter>;
-  text?: InputMaybe<RichTextFilter>;
-  actions?: InputMaybe<PageBlocksHeroActionsFilter>;
-  image?: InputMaybe<PageBlocksHeroImageFilter>;
-  color?: InputMaybe<StringFilter>;
-};
-
-export type PageBlocksFeaturesItemsIconFilter = {
-  color?: InputMaybe<StringFilter>;
-  style?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
-};
-
-export type PageBlocksFeaturesItemsFilter = {
-  icon?: InputMaybe<PageBlocksFeaturesItemsIconFilter>;
-  title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-};
-
-export type PageBlocksFeaturesFilter = {
-  items?: InputMaybe<PageBlocksFeaturesItemsFilter>;
-  color?: InputMaybe<StringFilter>;
-};
-
-export type PageBlocksContentFilter = {
-  body?: InputMaybe<RichTextFilter>;
-  color?: InputMaybe<StringFilter>;
-};
-
-export type PageBlocksTestimonialFilter = {
-  quote?: InputMaybe<StringFilter>;
-  author?: InputMaybe<StringFilter>;
-  color?: InputMaybe<StringFilter>;
-};
-
-export type PageBlocksFilter = {
-  hero?: InputMaybe<PageBlocksHeroFilter>;
-  features?: InputMaybe<PageBlocksFeaturesFilter>;
-  content?: InputMaybe<PageBlocksContentFilter>;
-  testimonial?: InputMaybe<PageBlocksTestimonialFilter>;
-};
-
-export type PageFilter = {
-  blocks?: InputMaybe<PageBlocksFilter>;
-};
-
 export type PageConnectionEdges = {
   __typename?: 'PageConnectionEdges';
   cursor: Scalars['String'];
@@ -646,8 +445,8 @@ export type Mutation = {
   createDocument: DocumentNode;
   updatePost: Post;
   createPost: Post;
-  updatePost2: Post2;
-  createPost2: Post2;
+  updateFoobar: Foobar;
+  createFoobar: Foobar;
   updateGlobal: Global;
   createGlobal: Global;
   updateAuthor: Author;
@@ -696,15 +495,15 @@ export type MutationCreatePostArgs = {
 };
 
 
-export type MutationUpdatePost2Args = {
+export type MutationUpdateFoobarArgs = {
   relativePath: Scalars['String'];
-  params: Post2Mutation;
+  params: FoobarMutation;
 };
 
 
-export type MutationCreatePost2Args = {
+export type MutationCreateFoobarArgs = {
   relativePath: Scalars['String'];
-  params: Post2Mutation;
+  params: FoobarMutation;
 };
 
 
@@ -745,7 +544,7 @@ export type MutationCreatePageArgs = {
 
 export type DocumentMutation = {
   post?: InputMaybe<PostMutation>;
-  post2?: InputMaybe<Post2Mutation>;
+  foobar?: InputMaybe<FoobarMutation>;
   global?: InputMaybe<GlobalMutation>;
   author?: InputMaybe<AuthorMutation>;
   page?: InputMaybe<PageMutation>;
@@ -760,7 +559,7 @@ export type PostMutation = {
   _body?: InputMaybe<Scalars['JSON']>;
 };
 
-export type Post2Mutation = {
+export type FoobarMutation = {
   title?: InputMaybe<Scalars['String']>;
   date?: InputMaybe<Scalars['String']>;
   summary?: InputMaybe<Scalars['String']>;
@@ -902,7 +701,7 @@ export type BlogPostQueryQuery = { __typename?: 'Query', post: { __typename?: 'P
 
 export type PostPartsFragment = { __typename?: 'Post', title?: string | null, heroImg?: string | null, excerpt?: any | null, date?: string | null, _body?: any | null, author?: { __typename?: 'Author', id: string } | null };
 
-export type Post2PartsFragment = { __typename?: 'Post2', title: string, date?: string | null, summary?: string | null, description?: string | null, featured?: boolean | null, disable_ads?: boolean | null, disable_panels?: boolean | null, disable_newsletterbox?: boolean | null, body?: string | null };
+export type FoobarPartsFragment = { __typename?: 'Foobar', title: string, date?: string | null, summary?: string | null, description?: string | null, featured?: boolean | null, disable_ads?: boolean | null, disable_panels?: boolean | null, disable_newsletterbox?: boolean | null, body?: string | null };
 
 export type GlobalPartsFragment = { __typename?: 'Global', header?: { __typename: 'GlobalHeader', color?: string | null, icon?: { __typename: 'GlobalHeaderIcon', color?: string | null, style?: string | null, name?: string | null } | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null };
 
@@ -923,30 +722,28 @@ export type PostConnectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<PostFilter>;
 }>;
 
 
 export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'Post', id: string, title?: string | null, heroImg?: string | null, excerpt?: any | null, date?: string | null, _body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', id: string } | null } | null } | null> | null } };
 
-export type Post2QueryVariables = Exact<{
+export type FoobarQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type Post2Query = { __typename?: 'Query', post2: { __typename?: 'Post2', id: string, title: string, date?: string | null, summary?: string | null, description?: string | null, featured?: boolean | null, disable_ads?: boolean | null, disable_panels?: boolean | null, disable_newsletterbox?: boolean | null, body?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type FoobarQuery = { __typename?: 'Query', foobar: { __typename?: 'Foobar', id: string, title: string, date?: string | null, summary?: string | null, description?: string | null, featured?: boolean | null, disable_ads?: boolean | null, disable_panels?: boolean | null, disable_newsletterbox?: boolean | null, body?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type Post2ConnectionQueryVariables = Exact<{
+export type FoobarConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<Post2Filter>;
 }>;
 
 
-export type Post2ConnectionQuery = { __typename?: 'Query', post2Connection: { __typename?: 'Post2Connection', totalCount: number, edges?: Array<{ __typename?: 'Post2ConnectionEdges', node?: { __typename?: 'Post2', id: string, title: string, date?: string | null, summary?: string | null, description?: string | null, featured?: boolean | null, disable_ads?: boolean | null, disable_panels?: boolean | null, disable_newsletterbox?: boolean | null, body?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type FoobarConnectionQuery = { __typename?: 'Query', foobarConnection: { __typename?: 'FoobarConnection', totalCount: number, edges?: Array<{ __typename?: 'FoobarConnectionEdges', node?: { __typename?: 'Foobar', id: string, title: string, date?: string | null, summary?: string | null, description?: string | null, featured?: boolean | null, disable_ads?: boolean | null, disable_panels?: boolean | null, disable_newsletterbox?: boolean | null, body?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type GlobalQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -961,7 +758,6 @@ export type GlobalConnectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<GlobalFilter>;
 }>;
 
 
@@ -980,7 +776,6 @@ export type AuthorConnectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<AuthorFilter>;
 }>;
 
 
@@ -999,7 +794,6 @@ export type PageConnectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
-  filter?: InputMaybe<PageFilter>;
 }>;
 
 
@@ -1063,8 +857,8 @@ export const PostPartsFragmentDoc = gql`
   _body
 }
     `;
-export const Post2PartsFragmentDoc = gql`
-    fragment Post2Parts on Post2 {
+export const FoobarPartsFragmentDoc = gql`
+    fragment FoobarParts on Foobar {
   title
   date
   summary
@@ -1195,14 +989,13 @@ export const PostDocument = gql`
 }
     ${PostPartsFragmentDoc}`;
 export const PostConnectionDocument = gql`
-    query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PostFilter) {
+    query postConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   postConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -1224,9 +1017,9 @@ export const PostConnectionDocument = gql`
   }
 }
     ${PostPartsFragmentDoc}`;
-export const Post2Document = gql`
-    query post2($relativePath: String!) {
-  post2(relativePath: $relativePath) {
+export const FoobarDocument = gql`
+    query foobar($relativePath: String!) {
+  foobar(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -1238,19 +1031,18 @@ export const Post2Document = gql`
       }
       id
     }
-    ...Post2Parts
+    ...FoobarParts
   }
 }
-    ${Post2PartsFragmentDoc}`;
-export const Post2ConnectionDocument = gql`
-    query post2Connection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Post2Filter) {
-  post2Connection(
+    ${FoobarPartsFragmentDoc}`;
+export const FoobarConnectionDocument = gql`
+    query foobarConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  foobarConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -1266,12 +1058,12 @@ export const Post2ConnectionDocument = gql`
           }
           id
         }
-        ...Post2Parts
+        ...FoobarParts
       }
     }
   }
 }
-    ${Post2PartsFragmentDoc}`;
+    ${FoobarPartsFragmentDoc}`;
 export const GlobalDocument = gql`
     query global($relativePath: String!) {
   global(relativePath: $relativePath) {
@@ -1291,14 +1083,13 @@ export const GlobalDocument = gql`
 }
     ${GlobalPartsFragmentDoc}`;
 export const GlobalConnectionDocument = gql`
-    query globalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: GlobalFilter) {
+    query globalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   globalConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -1339,14 +1130,13 @@ export const AuthorDocument = gql`
 }
     ${AuthorPartsFragmentDoc}`;
 export const AuthorConnectionDocument = gql`
-    query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AuthorFilter) {
+    query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   authorConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -1387,14 +1177,13 @@ export const PageDocument = gql`
 }
     ${PagePartsFragmentDoc}`;
 export const PageConnectionDocument = gql`
-    query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PageFilter) {
+    query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
   pageConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
-    filter: $filter
   ) {
     totalCount
     edges {
@@ -1434,11 +1223,11 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     postConnection(variables?: PostConnectionQueryVariables, options?: C): Promise<{data: PostConnectionQuery, variables: PostConnectionQueryVariables, query: string}> {
         return requester<{data: PostConnectionQuery, variables: PostConnectionQueryVariables, query: string}, PostConnectionQueryVariables>(PostConnectionDocument, variables, options);
       },
-    post2(variables: Post2QueryVariables, options?: C): Promise<{data: Post2Query, variables: Post2QueryVariables, query: string}> {
-        return requester<{data: Post2Query, variables: Post2QueryVariables, query: string}, Post2QueryVariables>(Post2Document, variables, options);
+    foobar(variables: FoobarQueryVariables, options?: C): Promise<{data: FoobarQuery, variables: FoobarQueryVariables, query: string}> {
+        return requester<{data: FoobarQuery, variables: FoobarQueryVariables, query: string}, FoobarQueryVariables>(FoobarDocument, variables, options);
       },
-    post2Connection(variables?: Post2ConnectionQueryVariables, options?: C): Promise<{data: Post2ConnectionQuery, variables: Post2ConnectionQueryVariables, query: string}> {
-        return requester<{data: Post2ConnectionQuery, variables: Post2ConnectionQueryVariables, query: string}, Post2ConnectionQueryVariables>(Post2ConnectionDocument, variables, options);
+    foobarConnection(variables?: FoobarConnectionQueryVariables, options?: C): Promise<{data: FoobarConnectionQuery, variables: FoobarConnectionQueryVariables, query: string}> {
+        return requester<{data: FoobarConnectionQuery, variables: FoobarConnectionQueryVariables, query: string}, FoobarConnectionQueryVariables>(FoobarConnectionDocument, variables, options);
       },
     global(variables: GlobalQueryVariables, options?: C): Promise<{data: GlobalQuery, variables: GlobalQueryVariables, query: string}> {
         return requester<{data: GlobalQuery, variables: GlobalQueryVariables, query: string}, GlobalQueryVariables>(GlobalDocument, variables, options);
