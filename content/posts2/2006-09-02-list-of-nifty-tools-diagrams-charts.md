@@ -17,7 +17,7 @@ categories:
 disable_panels: true
 ---
 
-Developing websites over the last few years, we've been stumbling over the same problem over and over again: <strong>how can I visualize my idea easily and quickly?</strong> Since human beings are used to visualizing things, trying to understand the idea behind them, recently we've spent hours googling for useful tools and tutorials which would help us to create images &mdash; mostly, diagrams, charts, chart-flows, and so on.
+Developing websites over the last few years, we've been stumbling over the same problem over and over again: how can I visualize my idea easily and quickly? Since human beings are used to visualizing things, trying to understand the idea behind them, recently we've spent hours googling for useful tools and tutorials which would help us to create images &mdash; mostly, diagrams, charts, chart-flows, and so on.
 
 ## A List Of Nifty Tools For Drawing Diagrams, Charts And Chart Flows
 
