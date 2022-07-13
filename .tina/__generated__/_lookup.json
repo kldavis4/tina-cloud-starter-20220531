@@ -1,1 +1,1 @@
-{"DocumentConnection":{"type":"DocumentConnection","resolveType":"multiCollectionDocumentList","collections":["post","foobar","global","author","page"]}}
+{"DocumentConnection":{"type":"DocumentConnection","resolveType":"multiCollectionDocumentList","collections":["post","foobar","global","author","page"]},"Node":{"type":"Node","resolveType":"nodeDocument"}}
