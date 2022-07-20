@@ -6,6 +6,14 @@ import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
 
 const schema = defineSchema({
+  config: {
+    media: {
+      tina: {
+        publicFolder: "public",
+        mediaRoot: "uploads"
+      }
+    },
+  },
   collections: [
     {
       label: "Blog Posts",
@@ -436,7 +444,8 @@ export const tinaConfig = defineConfig({
   tinaioConfig: {
     frontendUrlOverride: process.env.NEXT_PUBLIC_TINA_URL,
     contentApiUrlOverride: process.env.NEXT_PUBLIC_TINA_CONTENT_URL,
-    identityApiUrlOverride: process.env.NEXT_PUBLIC_TINA_IDENTITY_URL
+    identityApiUrlOverride: process.env.NEXT_PUBLIC_TINA_IDENTITY_URL,
+    assetsApiUrlOverride: process.env.NEXT_PUBLIC_TINA_ASSETS_URL,
   },
   schema,
   cmsCallback: (cms) => {
