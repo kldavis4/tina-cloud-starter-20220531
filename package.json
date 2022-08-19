@@ -12,7 +12,7 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "devDependencies": {
-    "@tinacms/cli": "0.61.2",
+    "@tinacms/cli": "0.61.3",
     "@types/js-cookie": "^3.0.0",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
@@ -40,8 +40,9 @@
     "react-is": "^17.0.2",
     "styled-components": "^5.1.3",
     "styled-jsx": "^3.2.5",
-    "tinacms": "0.69.0",
-    "typescript": "^4.5.2"
+    "tinacms": "0.69.1",
+    "typescript": "^4.5.2",
+    "next-tinacms-dos": "0.0.0-20220819140157"
   },
   "resolutions": {
     "final-form": "4.20.1",
