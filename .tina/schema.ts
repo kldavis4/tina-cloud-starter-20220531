@@ -8,10 +8,10 @@ import { iconSchema } from "../components/util/icon";
 const schema = defineSchema({
   config: {
     media: {
-      loadCustomStore: async () => {
-        const pack = await import("next-tinacms-dos");
-        return pack.TinaCloudDOSMediaStore;
-      },
+      tina: {
+        publicFolder: "public",
+        mediaRoot: "uploads"
+      }
     },
   },
   collections: [
