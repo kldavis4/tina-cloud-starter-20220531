@@ -9,7 +9,7 @@ blocks:
       .tina/schema.ts.
 
 
-      ABCDEFGHIJKLMNOPQRST
+      ABCDEFGHIJKLMNOPQRSTU
     actions:
       - label: Get Started
         type: button
