@@ -9,7 +9,7 @@ blocks:
       .tina/schema.ts.
 
 
-      A
+      AB
     actions:
       - label: Get Started
         type: button
