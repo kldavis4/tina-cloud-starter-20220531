@@ -21,6 +21,12 @@ const schema = defineSchema({
       name: "post",
       path: "content/posts",
       format: "mdx",
+      indexes: [
+      {
+        name: "datetitle",
+        fields: [{name: "date"},{name: "title"}]
+      }
+      ],
       fields: [
         {
           type: "string",
