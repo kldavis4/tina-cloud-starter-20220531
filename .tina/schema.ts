@@ -25,6 +25,10 @@ const schema = defineSchema({
       {
         name: "datetitle",
         fields: [{name: "date"},{name: "title"}]
+      },
+      {
+        name: "authortitle",
+        fields: [{name: "author"},{name: "title"}]
       }
       ],
       fields: [
