@@ -6,7 +6,7 @@
     "dev": "tinacms dev --noTelemetry -c \"next dev\"",
     "dev-data": "tinacms server:start --experimentalData -c \"next dev\"",
     "dev-isomorphic": "tinacms server:start --isomorphicGitBridge --experimentalData -c \"next dev\"",
-    "build": "tinacms server:start --isomorphicGitBridge --experimentalData -c \"next build\"",
+    "build": "git diff-tree --no-commit-id --name-only -r $NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA && tinacms server:start --isomorphicGitBridge --experimentalData -c \"next build\"",
     "start": "tinacms server:start -c \"next start\"",
     "export": "npm run build && next export",
     "lint": "eslint . --ext .ts,.tsx"
